@@ -1,0 +1,5 @@
+# Active la réécriture d'URL
+RewriteEngine On
+
+# Réécriture d'URL pour retirer l'extension du fichier ("clean URL")
+RewriteRule ^([a-zA-Z_]+)/*$ $1.php [L]

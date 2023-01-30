@@ -25,7 +25,9 @@ define("PAGE_TITLE", "Projets");
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title">
-                            <?= $project->name ?>
+                            <a href="/projetDetail.php?id=<?= $project->id_project; ?>">
+                                <?= $project->name ?>
+                            </a>
                         </h5>
                     </div>
                     <img src="/assets/img/projects/<?= $project->cover ?>" alt="Couverture de <?= $project->name ?>">

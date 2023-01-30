@@ -9,6 +9,7 @@ class ProjectModel {
     public ?string $link_site;
     public ?string $link_git;
     public string $cover;
+    public ?array $pictures;
 
     public function displayDateStart(): string {
         $datetime = DateTime::createFromFormat("Y-m-d", $this->date_start);
