@@ -25,7 +25,7 @@ define("PAGE_TITLE", "Projets");
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title">
-                            <a href="/projetDetail.php?id=<?= $project->id_project; ?>">
+                            <a href="/projet/<?= $project->id_project; ?>">
                                 <?= $project->name ?>
                             </a>
                         </h5>

@@ -1,5 +1,8 @@
 # Active la réécriture d'URL
 RewriteEngine On
 
+# Réécriture d'URL pour afficher la page de détail d'un projet de la façon suivante : "/projet/1" (à la place de "/projetDetail.php?id=1")
+RewriteRule ^projet/([0-9]+)/*$ projetDetail.php?id=$1 [L]
+
 # Réécriture d'URL pour retirer l'extension du fichier ("clean URL")
 RewriteRule ^([a-zA-Z_]+)/*$ $1.php [L]
