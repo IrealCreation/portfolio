@@ -40,7 +40,13 @@ define("PAGE_TITLE", "Accueil");
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
-        </div>
+    </div>
+    <h4>Compétences :</h4>
+    <ul>
+        <?php foreach($project->skills as $skill) { ?>
+            <li><?= $skill->name ?></li>
+        <?php } ?>
+    </ul>
 </main>
 
 <?php include("./assets/inc/footer.php"); ?>

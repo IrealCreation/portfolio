@@ -35,6 +35,11 @@ define("PAGE_TITLE", "Projets");
                         <p>
                             <?= $project->description ?>
                         </p>
+                        <ul>
+                            <?php foreach($project->skills as $skill) { ?>
+                                <li><?= $skill->name ?></li>
+                            <?php } ?>
+                        </ul>
                         <div class="flex">
                             <?php if(isset($project->link_site)) { ?>
                                 <a href="<?= $project->link_site ?>" class="btn btn-primary">Voir le site</a>

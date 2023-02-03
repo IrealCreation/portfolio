@@ -10,6 +10,7 @@ class ProjectModel {
     public ?string $link_git;
     public string $cover;
     public ?array $pictures;
+    public ?array $skills;
 
     public function displayDateStart(): string {
         $datetime = DateTime::createFromFormat("Y-m-d", $this->date_start);
