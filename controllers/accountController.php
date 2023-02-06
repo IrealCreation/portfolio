@@ -83,7 +83,7 @@ class AccountController {
             if(password_verify($password, $account->password)) {
                 // Bravo : le mot de passe est correct, la personne est connectée !
                 $_SESSION["email"] = $account->email;
-                header("Location: /portfolio/admin/index.php");
+                header("Location: /admin/index.php");
                 exit();
             }
             else {
@@ -98,6 +98,19 @@ class AccountController {
                 "success" => false,
                 "message" => "Email incorrect"
             ];
+        }
+    }
+
+    public function isLogged() {
+        // Permet de vérifier qu'un utilisateur soit connecté afin d'accéder à l'interface d'admin
+        if(isset($_SESSION["email"])) {
+            // La personne est connectée !
+            return true;
+        }
+        else {
+            // La personne n'est pas connectée !
+            header("Location: /admin/connexion.php");
+            return false;
         }
     }
 }
