@@ -1,5 +1,8 @@
 <?php 
 
+session_start();
+define("PAGE_TITLE", "Connexion");
+
 require_once("../controllers/accountController.php");
 
 $controller = new AccountController;
@@ -9,3 +12,12 @@ $controller = new AccountController;
 // var_dump($result);
 
 ?>
+<?php include("../assets/inc/head.php"); ?>
+
+<?php include("../assets/inc/header.php"); ?>
+
+<main>
+    <!-- TODO: formulaire de connexion -->
+</main>
+
+<?php include("../assets/inc/footer.php"); ?>

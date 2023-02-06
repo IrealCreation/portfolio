@@ -59,4 +59,45 @@ class AccountController {
             "message" => "Compte utilisateur créé"
         ];
     }
+
+    public function login(string $email, string $password) {
+        global $pdo;
+
+        // Première étape : récupéter un compte utilisateur correspondant à cet email
+        $sql = "SELECT id_account, email, password 
+            FROM account
+            WHERE email = :email
+        ";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindParam(":email", $email);
+        $statement->execute();
+
+        // Vérifions si au moins un compte a été trouvé
+        if($statement->rowCount() > 0) {
+            // Deuxième étape : vérifier le mot de passe
+
+            $statement->setFetchMode(PDO::FETCH_CLASS, "AccountModel");
+            $account = $statement->fetch();
+
+            if(password_verify($password, $account->password)) {
+                // Bravo : le mot de passe est correct, la personne est connectée !
+                $_SESSION["email"] = $account->email;
+                header("Location: /portfolio/admin/index.php");
+                exit();
+            }
+            else {
+                return [
+                    "success" => false,
+                    "message" => "Mot de passe incorrect"
+                ];
+            }
+        }
+        else {
+            return [
+                "success" => false,
+                "message" => "Email incorrect"
+            ];
+        }
+    }
 }
