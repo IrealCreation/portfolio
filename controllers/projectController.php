@@ -1,10 +1,10 @@
 <?php 
 
-require_once("./conf/conf.php");
+require_once(__DIR__ . "/../conf/conf.php");
 
-require_once("./models/projectModel.php");
-require_once("./models/pictureModel.php");
-require_once("./models/skillModel.php");
+require_once(__DIR__ . "/../models/projectModel.php");
+require_once(__DIR__ . "/../models/pictureModel.php");
+require_once(__DIR__ . "/../models/skillModel.php");
 
 class ProjectController {
 
