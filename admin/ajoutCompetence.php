@@ -10,7 +10,7 @@ TODO: formulaire d'ajout d'une nouvelle compétence
 
 define("PAGE_TITLE", "Ajout d'une compétence");
 
-var_dump($_POST);
+//var_dump($_POST);
 
 require_once("../controllers/skillController.php");
 
@@ -18,7 +18,7 @@ $skillController = new SkillController;
 
 if(isset($_POST["submit"])) {
     $error = $skillController->create($_POST["name"], $_POST["level"], $_FILES["picture"]);
-    var_dump($error);
+    //var_dump($error);
 }
 
 
@@ -30,6 +30,16 @@ if(isset($_POST["submit"])) {
 <main class="container-fluid">
 
     <h1>Ajout d'une compétence</h1>
+    <?php
+        if(isset($error)) {
+            if($error["success"]) { ?>
+                <div class="alert alert-success"><?= $error["message"] ?></div>
+            <?php }
+            else { ?>
+                <div class="alert alert-danger"><?= $error["message"] ?></div>
+            <?php }
+        }
+    ?>
     <form action="#" method="POST" enctype="multipart/form-data" class="m-4">
         <label for="name">Nom de la compétence</label>
         <input class="form-control" type="text" name="name" id="name" required>
