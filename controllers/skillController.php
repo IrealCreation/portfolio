@@ -5,7 +5,18 @@ require_once(__DIR__ . "/../conf/conf.php");
 require_once(__DIR__ . "/../models/skillModel.php");
 
 class SkillController {
-    // TODO: créer les méthodes permettant des récupérer les skills (readAll()...)
+    public function readAll() : array 
+    {
+        global $pdo;
+        $sql = "SELECT * FROM skill";
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_CLASS, "SkillModel");
+        // foreach($result as $skill) {
+        //     $this->loadProjectsFromSkill($skill);
+        // }
+        return $result;
+    }
 
     public function create(string $name, int $level, array $picture) {
 

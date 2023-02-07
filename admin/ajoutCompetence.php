@@ -1,24 +1,21 @@
 <?php 
 
-/* 
-TODO: formulaire d'ajout d'une nouvelle compétence
-- Créer la page admin/ajoutCompetence.php 
-- Y créer un formulaire contenant les informations de la compétence
-- Créer la méthode create() de SkillController
-- Envoyer les infos du formulaire à create()
-*/
+session_start();
 
 define("PAGE_TITLE", "Ajout d'une compétence");
 
-//var_dump($_POST);
-
 require_once("../controllers/skillController.php");
+require_once("../controllers/accountController.php");
+
+$accountController = new AccountController;
+
+// Permet de vérifier que l'utilisateur soit connecté
+$accountController->isLogged();
 
 $skillController = new SkillController;
 
 if(isset($_POST["submit"])) {
     $error = $skillController->create($_POST["name"], $_POST["level"], $_FILES["picture"]);
-    //var_dump($error);
 }
 
 
