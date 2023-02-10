@@ -6,6 +6,7 @@ define("PAGE_TITLE", "Ajout d'un projet");
 
 require_once("../controllers/accountController.php");
 require_once("../controllers/skillController.php");
+require_once("../controllers/projectController.php");
 
 $accountController = new AccountController;
 
@@ -16,6 +17,12 @@ $skillController = new SkillController;
 // Récupération de toutes les compétences
 $skills = $skillController->readAll();
 
+if(isset($_POST["submit"])) {
+    // Envoi des informations du formulaire pour créer un nouveau projet
+    $projectController = new ProjectController;
+    $result = $projectController->create($_POST["name"], $_POST["description"], $_POST["date_start"], $_POST["date_end"], $_POST["link_site"], $_POST["link_git"], $_FILES["cover"], $_POST["skills"]);
+}
+
 
 ?>
 <?php include("../assets/inc/head.php"); ?>
@@ -24,7 +31,17 @@ $skills = $skillController->readAll();
 
 <main class="container-fluid">
     <h1>Ajout d'un nouveau projet</h1>
-    <form action="#" method="POST" class="m-4">
+    <?php
+        if(isset($result)) {
+            if($result["success"]) { ?>
+                <div class="alert alert-success"><?= $result["message"] ?></div>
+            <?php }
+            else { ?>
+                <div class="alert alert-danger"><?= $result["message"] ?></div>
+            <?php }
+        }
+    ?>
+    <form action="#" method="POST" class="m-4" enctype="multipart/form-data">
         <label for="name">Nom</label>
         <input type="text" name="name" id="name" class="form-control" required>
 
