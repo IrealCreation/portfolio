@@ -29,7 +29,7 @@ $skills = $skillController->readAll();
         <input type="text" name="name" id="name" class="form-control" required>
 
         <label for="description">Description</label>
-        <input type="text" name="description" id="description" class="form-control" required>
+        <textarea name="description" id="description" class="form-control" required></textarea>
 
         <label for="date_start">Date de début</label>
         <input type="date" name="date_start" id="date_start" class="form-control" required>
